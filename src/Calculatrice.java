@@ -29,12 +29,33 @@ public class Calculatrice {
         }
     }
     public static void addition(){
-        Scanner sc =  new Scanner(System.in);
-        System.out.println("Saisissez le 1e nombre que vous souhaitez additionner");
-        float n = sc.nextFloat();
+        float n =0;
+        boolean correct;
+        do{
+            try{
+                System.out.println("Saisissez le 1e nombre que vous souhaitez additionner");
+                Scanner sc =  new Scanner(System.in);
+                n = sc.nextFloat();
+                correct=true;
+            }catch(Exception e){
+                System.out.println("Vous avez tapé autre chose qu’un nombre");
+                System.out.println(" Veuillez recommencer");
+                correct = false;
+            }
+        }while(!correct);
         Operande operandeA = new Operande(n);
-        System.out.println("Saisissez le 2e nombre que vous souhaitez additionner");
-        n = sc.nextFloat();
+        do{
+            Scanner sc =  new Scanner(System.in);
+            try{
+                System.out.println("Saisissez le 2e nombre que vous souhaitez additionner");
+                n = sc.nextFloat();
+                correct=true;
+            }catch(Exception e){
+                System.out.println("Vous avez tapé autre chose qu’un nombre");
+                System.out.println(" Veuillez recommencer");
+                correct = false;
+            }
+        }while(!correct);
         Operande operandeB = new Operande(n);
         System.out.println(operandeA.getNombre() +" + " + operandeB.getNombre() +
                 " égal => " + (operandeA.getNombre() + operandeB.getNombre()));
