@@ -61,12 +61,36 @@ public class Calculatrice {
                 " égal => " + (operandeA.getNombre() + operandeB.getNombre()));
     }
     public static void soustraction(){
-        Scanner sc =  new Scanner(System.in);
-        System.out.println("Que voulez-vous soustraire? saisissez le plus grand des 2!");
-        float n = sc.nextFloat();
+        float n =0;
+        boolean correct;
+        do{
+            try{
+                Scanner sc =  new Scanner(System.in);
+                System.out.println("Que voulez-vous soustraire? saisissez le plus grand des 2!");
+                 n = sc.nextFloat();
+                correct=true;
+            }catch(Exception e){
+                System.out.println("Vous avez tapé autre chose qu’un nombre");
+                System.out.println(" Veuillez recommencer");
+                correct = false;
+            }
+        }while(!correct);
+        //----------------------------
         Operande operandeA = new Operande(n);
-        System.out.println("de combien ?");
-        n = sc.nextFloat();
+        //-----------------------
+        do{
+            try{
+                Scanner sc =  new Scanner(System.in);
+                System.out.println("de combien ?");
+                n = sc.nextFloat();
+                correct=true;
+            }catch(Exception e){
+                System.out.println("Vous avez tapé autre chose qu’un nombre");
+                System.out.println(" Veuillez recommencer");
+                correct = false;
+            }
+        }while(!correct);
+
         Operande operandeB = new Operande(n);
         System.out.println(operandeA.getNombre() +" - " + operandeB.getNombre() +
                 " égal => " + (operandeA.getNombre() - operandeB.getNombre()));
