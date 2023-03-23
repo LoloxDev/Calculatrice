@@ -19,13 +19,20 @@ public class Calculatrice {
         System.out.println("Vous avez choisis une opération de type " + operateur.getSymbole());
         System.out.println("Rentrez les chiffres que vous souhaitez additionner un par un, puis terminez par =");
         while (true){
-            choice = scan.next().charAt(0);
-            if (choice == '='){
-                break; // Sortir de la boucle while si l'utilisateur entre le caractère '='
+            if (scan.hasNextInt()){
+                int nombre = scan.nextInt();
+                Operande operande = new Operande(nombre);
+                values.add(operande);
+            } else {
+                String saisie = scan.next();
+                if (saisie.equals("=")){
+                    break;
+                } else {
+                    System.out.println("Saisie invalide, veuillez entrer un nombre ou le caractère =");
+                }
             }
-            Operande operande = new Operande(Character.getNumericValue(choice));
-            values.add(operande);
         }
+
         Calculatrice calculinette = new Calculatrice(operateur, values);
        System.out.println("Le résultat de votre opération est " + calculinette.calcul());
        calculinette.direAurevoir();
