@@ -1,42 +1,59 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Calculatrice {
 
 
-    private final Operande operande1;
-    private final Operande operande2;
+    private Operande[] operande;
     private final TypeOperation typeOperation;
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        char choice = '\0';
+        ArrayList<Operande> values = new ArrayList<>();
+
 
         System.out.println("Bienvenue sur Calculinette, quel opération souhaitez vous effectuer ?");
         System.out.println("1. Addition ( + )\n2. Soustraction ( - )\n3. Multiplication ( * )\n4. Division ( / )");
         TypeOperation operateur = new TypeOperation(scan.next().charAt(0));
         System.out.println("Vous avez choisis une opération de type " + operateur.getSymbole());
-        System.out.println("Rentrez les chiffres que vous souhaitez additionner un par un.");
-        Operande operande1 = new Operande(scan.nextDouble());
-        Operande operande2 = new Operande(scan.nextDouble());
-        Calculatrice calculinette = new Calculatrice(operateur, operande1, operande2);
-        System.out.println("Le résultat de votre opération est " + calculinette.calculinette());
-        calculinette.direAurevoir();
-    }
-
-    public Calculatrice(TypeOperation typeOperation, Operande operande1, Operande operande2) {
-        this.typeOperation = typeOperation;
-        this.operande1 = operande1;
-        this.operande2 = operande2;
-    }
-
-    public double calculinette(){
-        double result = 0;
-        if(typeOperation.getSymbole() == '+'){
-            result = operande1.operande + operande2.operande;
+        System.out.println("Rentrez les chiffres que vous souhaitez additionner un par un, puis terminez par =");
+        while (true){
+            choice = scan.next().charAt(0);
+            if (choice == '='){
+                break; // Sortir de la boucle while si l'utilisateur entre le caractère '='
+            }
+            Operande operande = new Operande(Character.getNumericValue(choice));
+            values.add(operande);
         }
+        Calculatrice calculinette = new Calculatrice(operateur, values);
+       System.out.println("Le résultat de votre opération est " + calculinette.calcul());
+       calculinette.direAurevoir();
+    }
+
+    public Calculatrice(TypeOperation typeOperation, ArrayList<Operande> values) {
+        this.typeOperation = typeOperation;
+        this.operande = new Operande[values.size()];
+        for (int i=0; i<values.size(); i++){
+            this.operande[i] = values.get(i);
+        }
+    }
+
+    public double calcul(){
+        double result = 0;
+        for (int i = 0; i < operande.length; i++) {
+            switch (typeOperation.getSymbole()) {
+                case '+' -> result += operande[i].getOperande();
+                case '-' -> result -= operande[i].operande;
+                case '*' -> result *= operande[i].operande;
+                case '/' -> result /= operande[i].operande;
+            }
+        }
+        //    result = operande1.operande typeOperation.getSymbole() operande2.operande; <-- J'aimerais arriver à faire ça pour éviter la condition ou le switch.
         return result;
     }
 
-    public void direAurevoir(){
-        System.out.println("Calculinette vous souhaite une excellente journée!");
-    }
+        public void direAurevoir(){
+            System.out.println("Calculinette vous souhaite une excellente journée!");
+        }
 }
