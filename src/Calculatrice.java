@@ -29,20 +29,8 @@ public class Calculatrice {
         }
     }
     public static void addition(){
-        float n =0;
+        float n = getN();
         boolean correct;
-        do{
-            try{
-                System.out.println("Saisissez le 1e nombre que vous souhaitez additionner");
-                Scanner sc =  new Scanner(System.in);
-                n = sc.nextFloat();
-                correct=true;
-            }catch(Exception e){
-                System.out.println("Vous avez tapé autre chose qu’un nombre");
-                System.out.println(" Veuillez recommencer");
-                correct = false;
-            }
-        }while(!correct);
         Operande operandeA = new Operande(n);
         do{
             Scanner sc =  new Scanner(System.in);
@@ -60,6 +48,25 @@ public class Calculatrice {
         System.out.println(operandeA.getNombre() +" + " + operandeB.getNombre() +
                 " égal => " + (operandeA.getNombre() + operandeB.getNombre()));
     }
+
+    private static float getN() {
+        float n =0;
+        boolean correct;
+        do{
+            try{
+                System.out.println("Saisissez le 1e nombre que vous souhaitez additionner");
+                Scanner sc =  new Scanner(System.in);
+                n = sc.nextFloat();
+                correct=true;
+            }catch(Exception e){
+                System.out.println("Vous avez tapé autre chose qu’un nombre");
+                System.out.println(" Veuillez recommencer");
+                correct = false;
+            }
+        }while(!correct);
+        return n;
+    }
+
     public static void soustraction(){
         float n =0;
         boolean correct;
