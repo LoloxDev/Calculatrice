@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cbaae8-2fb1-432e-9031-5fc61378ad32" name="Changes" comment="Toutes les opérations ok">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="64cbaae8-2fb1-432e-9031-5fc61378ad32" name="Changes" comment="Code commenté et int -&gt; double">
       <change beforePath="$PROJECT_DIR$/src/Calculatrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calculatrice.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +59,7 @@
       <updated>1679560166879</updated>
       <workItem from="1679560168035" duration="823000" />
       <workItem from="1679561540156" duration="20724000" />
-      <workItem from="1679645165755" duration="2341000" />
+      <workItem from="1679645165755" duration="2947000" />
     </task>
     <task id="LOCAL-00001" summary="Base">
       <created>1679560399634</created>
@@ -90,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679646704141</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Code commenté et int -&gt; double">
+      <created>1679647996923</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679647996923</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +107,7 @@
     <MESSAGE value="Recupération de mon code" />
     <MESSAGE value="Aditions avec un nombre arbitraire d'opérande, néscécite une mise au point pour soustraction multiplication et divisions" />
     <MESSAGE value="Toutes les opérations ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="Toutes les opérations ok" />
+    <MESSAGE value="Code commenté et int -&gt; double" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code commenté et int -&gt; double" />
   </component>
 </project>

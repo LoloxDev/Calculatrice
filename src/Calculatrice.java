@@ -36,7 +36,7 @@ public class Calculatrice {
         calculinette.direAurevoir();
     }
 
-    public Calculatrice(TypeOperation typeOperation, ArrayList<Operande> values) {
+    public Calculatrice(TypeOperation typeOperation, ArrayList<Operande> values) { // Constructor Calculatrice
         this.typeOperation = typeOperation;
         this.operande = new Operande[values.size()];
         for (int i=0; i<values.size(); i++){
@@ -51,7 +51,14 @@ public class Calculatrice {
                 case '+' -> result += operande[i].getOperande();
                 case '-' -> result -= operande[i].getOperande();
                 case '*' -> result *= operande[i].getOperande();
-                case '/' -> result /= operande[i].getOperande();
+                case '/' -> {
+                    if(operande[i].getOperande() != 0){ // On vérifie si l'utilisateur veux diviser par 0
+                        result /= operande[i].getOperande();
+                    } else {
+                        System.out.println("Impossible de diviser par 0");
+                        result = 0;
+                    }
+                }
             }
         }
         //    result = operande1.operande typeOperation.getSymbole() operande2.operande; <-- J'aimerais arriver à faire ça pour éviter la condition ou le switch.
