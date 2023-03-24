@@ -1,15 +1,13 @@
 public class Operande {
-    private float nombre;
 
-    public Operande(float n){
-        this.nombre = n;
-    }
-    public float getNombre() {
-        return nombre;
+    double operande;
+
+    public Operande(double operande) {
+        this.operande = operande;
     }
 
-    public void setNombre(float nombre) {
-        this.nombre = nombre;
+    public double getOperande() {
+        return operande;
     }
 
 

@@ -1,120 +1,71 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Calculatrice {
+
+
+    private final Operande[] operande;
+    private final TypeOperation typeOperation;
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        ArrayList<Operande> values = new ArrayList<>();
+
+
         System.out.println("Bienvenue sur Calculinette, quel opération souhaitez vous effectuer ?");
-        System.out.println("1. pour l'addition, saisissez juste  +\n2. Soustraction saisissez juste - " +
-                "\n3. Multiplication saisissez juste * \n4. Division saisissez juste / ");
-        String saisiUtilisateur = scan.nextLine();
-        calculer(saisiUtilisateur);
+        System.out.println("1. Addition ( + )\n2. Soustraction ( - )\n3. Multiplication ( * )\n4. Division ( / )");
+        TypeOperation operateur = new TypeOperation(scan.next().charAt(0));
+        System.out.println("Vous avez choisis une opération de type " + operateur.getSymbole());
+        System.out.println("Rentrez les chiffres que vous souhaitez additionner un par un, puis terminez par =");
+        while (true){
+            if (scan.hasNextDouble()){          // Si la saisie est un double, on crée un objet et on le stock dans un arraylist d'opérande.
+                double nombre = scan.nextDouble();
+                Operande operande = new Operande(nombre);
+                values.add(operande);
+            } else {            // Sinon si c'est un =, on coupe la boucle.
+                String saisie = scan.next();
+                if (saisie.equals("=")){
+                    break;
+                } else {            // Sinon, on demande à l'utilisateur de resaisir un nombre ou le caractère =
+                    System.out.println("Saisie invalide, veuillez entrer un nombre ou le caractère =");
+                }
+            }
+        }
+        Calculatrice calculinette = new Calculatrice(operateur, values);
+        System.out.println("Le résultat de votre opération est " + calculinette.calcul());
+        calculinette.direAurevoir();
     }
-    public static void calculer(String s){
-        TypeOperation operation = new TypeOperation(s);
-        switch (operation.getSymboleOperation()){
-            case "+" :
-                addition();
-                break;
-            case "-" :
-                soustraction();
-                break;
-            case "*" :
-                multiplication();
-                break;
-            case "/" :
-                division();
-                break;
-            default:
-                System.out.println("Vous n'avez pas choisi d'opération");
+
+    public Calculatrice(TypeOperation typeOperation, ArrayList<Operande> values) { // Constructor Calculatrice
+        this.typeOperation = typeOperation;
+        this.operande = new Operande[values.size()];
+        for (int i=0; i<values.size(); i++){
+            this.operande[i] = values.get(i);
         }
     }
-    public static void addition(){
-        float n =0;
-        boolean correct;
-        do{
-            try{
-                System.out.println("Saisissez le 1e nombre que vous souhaitez additionner");
-                Scanner sc =  new Scanner(System.in);
-                n = sc.nextFloat();
-                correct=true;
-            }catch(Exception e){
-                System.out.println("Vous avez tapé autre chose qu’un nombre");
-                System.out.println(" Veuillez recommencer");
-                correct = false;
-            }
-        }while(!correct);
-        Operande operandeA = new Operande(n);
-        do{
-            Scanner sc =  new Scanner(System.in);
-            try{
-                System.out.println("Saisissez le 2e nombre que vous souhaitez additionner");
-                n = sc.nextFloat();
-                correct=true;
-            }catch(Exception e){
-                System.out.println("Vous avez tapé autre chose qu’un nombre");
-                System.out.println(" Veuillez recommencer");
-                correct = false;
-            }
-        }while(!correct);
-        Operande operandeB = new Operande(n);
-        System.out.println(operandeA.getNombre() +" + " + operandeB.getNombre() +
-                " égal => " + (operandeA.getNombre() + operandeB.getNombre()));
-    }
-    public static void soustraction(){
-        float n =0;
-        boolean correct;
-        do{
-            try{
-                Scanner sc =  new Scanner(System.in);
-                System.out.println("Que voulez-vous soustraire? saisissez le plus grand des 2!");
-                 n = sc.nextFloat();
-                correct=true;
-            }catch(Exception e){
-                System.out.println("Vous avez tapé autre chose qu’un nombre");
-                System.out.println(" Veuillez recommencer");
-                correct = false;
-            }
-        }while(!correct);
-        //----------------------------
-        Operande operandeA = new Operande(n);
-        //-----------------------
-        do{
-            try{
-                Scanner sc =  new Scanner(System.in);
-                System.out.println("de combien ?");
-                n = sc.nextFloat();
-                correct=true;
-            }catch(Exception e){
-                System.out.println("Vous avez tapé autre chose qu’un nombre");
-                System.out.println(" Veuillez recommencer");
-                correct = false;
-            }
-        }while(!correct);
 
-        Operande operandeB = new Operande(n);
-        System.out.println(operandeA.getNombre() +" - " + operandeB.getNombre() +
-                " égal => " + (operandeA.getNombre() - operandeB.getNombre()));
+    public double calcul(){
+        double result = operande[0].getOperande(); // On initialise result à la première opérande
+        for (int i = 1; i < operande.length; i++) { // On démare notre boucle à la 2eme opérande
+            switch (typeOperation.getSymbole()) {
+                case '+' -> result += operande[i].getOperande();
+                case '-' -> result -= operande[i].getOperande();
+                case '*' -> result *= operande[i].getOperande();
+                case '/' -> {
+                    if(operande[i].getOperande() != 0){ // On vérifie si l'utilisateur veux diviser par 0
+                        result /= operande[i].getOperande();
+                    } else {
+                        System.out.println("Impossible de diviser par 0");
+                        result = 0;
+                    }
+                }
+            }
+        }
+        //    result = operande1.operande typeOperation.getSymbole() operande2.operande; <-- J'aimerais arriver à faire ça pour éviter la condition ou le switch.
+        return result;
     }
-    public static void multiplication(){
-        Scanner sc =  new Scanner(System.in);
-        System.out.println("Saisissez le nombre que vous souhaitez multiplier");
-        float n = sc.nextFloat();
-        Operande operandeA = new Operande(n);
-        System.out.println("Vouhaitez multiplier " + operandeA.getNombre() + " par ?");
-        n = sc.nextFloat();
-        Operande operandeB = new Operande(n);
-        System.out.println(operandeA.getNombre() +" * " + operandeB.getNombre() +
-                " égal => " + (operandeA.getNombre() * operandeB.getNombre()));
-    }
-    public static void division(){
-        Scanner sc =  new Scanner(System.in);
-        System.out.println("Saisissez le nombre que vous souhaitez diviser");
-        float n = sc.nextFloat();
-        Operande operandeA = new Operande(n);
-        System.out.println("Vous souhaitez diviser " + operandeA.getNombre() + " par ?");
-        n = sc.nextFloat();
-        Operande operandeB = new Operande(n);
-        System.out.println(operandeA.getNombre() +" / " + operandeB.getNombre() +
-                " égal => " + (operandeA.getNombre() / operandeB.getNombre()));
-    }
+
+    public void direAurevoir(){
+            System.out.println("Calculinette vous souhaite une excellente journée!");
+        }
 }

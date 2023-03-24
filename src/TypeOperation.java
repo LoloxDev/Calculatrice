@@ -1,16 +1,18 @@
+import java.util.Scanner;
+
 public class TypeOperation {
-    private String symboleOperation;
 
-    public TypeOperation(String s){
-        this.symboleOperation = s;
-    }
-    public String getSymboleOperation() {
-        return symboleOperation;
+    private char symbole;
+
+    public TypeOperation(char symbole) {
+        this.symbole = symbole;
     }
 
-    public void setSymboleOperation(String symboleOperation) {
-        this.symboleOperation = symboleOperation;
+    public void setSymbole(char symbole) {
+        this.symbole = symbole;
     }
 
-
+    public char getSymbole() {
+        return symbole;
+    }
 }
