@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64cbaae8-2fb1-432e-9031-5fc61378ad32" name="Changes" comment="Recupération de mon code">
+    <list default="true" id="64cbaae8-2fb1-432e-9031-5fc61378ad32" name="Changes" comment="Toutes les opérations ok">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Calculatrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calculatrice.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +60,7 @@
       <updated>1679560166879</updated>
       <workItem from="1679560168035" duration="823000" />
       <workItem from="1679561540156" duration="20724000" />
+      <workItem from="1679645165755" duration="2341000" />
     </task>
     <task id="LOCAL-00001" summary="Base">
       <created>1679560399634</created>
@@ -74,7 +76,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679564538974</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Aditions avec un nombre arbitraire d'opérande, néscécite une mise au point pour soustraction multiplication et divisions">
+      <created>1679595533986</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679595533986</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Toutes les opérations ok">
+      <created>1679646704141</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679646704141</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,6 +99,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Base" />
     <MESSAGE value="Recupération de mon code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Recupération de mon code" />
+    <MESSAGE value="Aditions avec un nombre arbitraire d'opérande, néscécite une mise au point pour soustraction multiplication et divisions" />
+    <MESSAGE value="Toutes les opérations ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Toutes les opérations ok" />
   </component>
 </project>

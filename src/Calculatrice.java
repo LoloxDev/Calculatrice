@@ -4,12 +4,11 @@ import java.util.Scanner;
 public class Calculatrice {
 
 
-    private Operande[] operande;
+    private final Operande[] operande;
     private final TypeOperation typeOperation;
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        char choice = '\0';
         ArrayList<Operande> values = new ArrayList<>();
 
 
@@ -19,23 +18,22 @@ public class Calculatrice {
         System.out.println("Vous avez choisis une opération de type " + operateur.getSymbole());
         System.out.println("Rentrez les chiffres que vous souhaitez additionner un par un, puis terminez par =");
         while (true){
-            if (scan.hasNextInt()){
-                int nombre = scan.nextInt();
+            if (scan.hasNextDouble()){          // Si la saisie est un double, on crée un objet et on le stock dans un arraylist d'opérande.
+                double nombre = scan.nextDouble();
                 Operande operande = new Operande(nombre);
                 values.add(operande);
-            } else {
+            } else {            // Sinon si c'est un =, on coupe la boucle.
                 String saisie = scan.next();
                 if (saisie.equals("=")){
                     break;
-                } else {
+                } else {            // Sinon, on demande à l'utilisateur de resaisir un nombre ou le caractère =
                     System.out.println("Saisie invalide, veuillez entrer un nombre ou le caractère =");
                 }
             }
         }
-
         Calculatrice calculinette = new Calculatrice(operateur, values);
-       System.out.println("Le résultat de votre opération est " + calculinette.calcul());
-       calculinette.direAurevoir();
+        System.out.println("Le résultat de votre opération est " + calculinette.calcul());
+        calculinette.direAurevoir();
     }
 
     public Calculatrice(TypeOperation typeOperation, ArrayList<Operande> values) {
@@ -47,8 +45,8 @@ public class Calculatrice {
     }
 
     public double calcul(){
-        double result = operande[0].getOperande();
-        for (int i = 1; i < operande.length; i++) {
+        double result = operande[0].getOperande(); // On initialise result à la première opérande
+        for (int i = 1; i < operande.length; i++) { // On démare notre boucle à la 2eme opérande
             switch (typeOperation.getSymbole()) {
                 case '+' -> result += operande[i].getOperande();
                 case '-' -> result -= operande[i].getOperande();
@@ -60,7 +58,7 @@ public class Calculatrice {
         return result;
     }
 
-        public void direAurevoir(){
+    public void direAurevoir(){
             System.out.println("Calculinette vous souhaite une excellente journée!");
         }
 }
