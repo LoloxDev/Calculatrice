@@ -47,13 +47,13 @@ public class Calculatrice {
     }
 
     public double calcul(){
-        double result = 0;
-        for (int i = 0; i < operande.length; i++) {
+        double result = operande[0].getOperande();
+        for (int i = 1; i < operande.length; i++) {
             switch (typeOperation.getSymbole()) {
                 case '+' -> result += operande[i].getOperande();
-                case '-' -> result -= operande[i].operande;
-                case '*' -> result *= operande[i].operande;
-                case '/' -> result /= operande[i].operande;
+                case '-' -> result -= operande[i].getOperande();
+                case '*' -> result *= operande[i].getOperande();
+                case '/' -> result /= operande[i].getOperande();
             }
         }
         //    result = operande1.operande typeOperation.getSymbole() operande2.operande; <-- J'aimerais arriver à faire ça pour éviter la condition ou le switch.
